@@ -1,0 +1,125 @@
+/* ========================================
+   Hero Section Styles
+   ======================================== */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-700) 100%); */
+  overflow: hidden;
+
+  background-image: url('../images/hero/hero.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to bottom, var(--color-overlay-dark), var(--color-overlay-darker)),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23111" width="1200" height="600"/><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="%23222" opacity="0.5"/></svg>');
+    
+        background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-text-white);
+  max-width: 800px;
+  padding: 60px 20px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-white);
+  text-shadow: 2px 2px 8px var(--color-shadow-overlay);
+  line-height: 1.1;
+}
+
+.hero-content h1 .accent {
+  color: var(--color-accent-500);
+  display: block;
+}
+
+.hero-content p {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  margin-bottom: 2.5rem;
+  color: var(--color-text-white-muted);
+  line-height: 1.7;
+  text-shadow: 1px 1px 4px var(--color-shadow-overlay-light);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.hero-cta .btn {
+  min-width: 180px;
+}
+
+/* ===============================
+   Decorative Elements
+   =============================== */
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg-main));
+  z-index: 1;
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+
+@media (max-width: 767px) {
+  .hero-section {
+    min-height: 500px;
+  }
+
+  .hero-content {
+    padding: 40px 20px;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 1rem;
+  }
+
+  .hero-content p {
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+  }
+}

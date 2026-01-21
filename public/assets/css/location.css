@@ -1,0 +1,154 @@
+/* ========================================
+   Location Section Styles
+   ======================================== */
+
+.location-section {
+  background-color: var(--color-bg-muted);
+  padding: 100px 0;
+}
+
+.location-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.location-map {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-strong);
+  aspect-ratio: 16/9;
+  background-color: var(--color-primary-100);
+}
+
+.location-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.location-cta .btn {
+  margin-top: 0;
+}
+
+.location-cta .btn + .btn {
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.location-map-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary-300));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-700);
+  font-size: 48px;
+  gap: 15px;
+}
+
+.location-map-placeholder i {
+  font-size: 64px;
+}
+
+.location-map-placeholder span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.location-info {
+  padding: 20px;
+}
+
+.location-info h3 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--color-text-primary);
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.location-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.location-detail-icon {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-700));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-white);
+  font-size: 18px;
+}
+
+.location-detail-content h4 {
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+.location-detail-content p,
+.location-detail-content a {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.location-detail-content a {
+  transition: color var(--transition-fast);
+}
+
+.location-detail-content a:hover {
+  color: var(--color-accent-500);
+}
+
+.location-cta {
+  margin-top: 30px;
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+
+@media (max-width: 1199px) {
+  .location-content {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .location-section {
+    padding: 60px 0;
+  }
+
+  .location-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .location-map {
+    order: -1;
+  }
+
+  .location-info h3 {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+}

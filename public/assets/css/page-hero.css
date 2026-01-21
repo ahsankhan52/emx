@@ -1,0 +1,75 @@
+/* ========================================
+   Page Hero Banner (Shared across all pages)
+   ======================================== */
+
+.page-hero {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-overlay-dark), var(--color-overlay-darkest));
+  z-index: 1;
+}
+
+/* Hero background image classes */
+.page-hero-bg-home {
+  background-image: url('../images/hero/hero.jpeg');
+}
+
+.page-hero-bg-about {
+  background-image: url('../images/about/about.avif');
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--color-text-white);
+  max-width: 800px;
+  padding: 60px 20px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: var(--color-text-white);
+  text-shadow: 2px 2px 8px var(--color-shadow-overlay);
+  line-height: 1.2;
+}
+
+.page-hero p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-text-white-muted);
+  text-shadow: 1px 1px 4px var(--color-shadow-overlay-light);
+  line-height: 1.6;
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+
+@media (max-width: 767px) {
+  .page-hero {
+    min-height: 250px;
+  }
+
+  .page-hero-content {
+    padding: 40px 20px;
+  }
+}

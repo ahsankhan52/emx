@@ -1,0 +1,115 @@
+/* ========================================
+   Design Tokens & Theme Variables
+   ======================================== */
+
+:root {
+   /* ===============================
+     Brand Color Seeds (rebrand-safe)
+     =============================== */
+
+   --brand-primary-h: 214;
+   --brand-primary-s: 90%;
+   --brand-primary-l: 42%;
+
+   --brand-accent-h: 24;
+   --brand-accent-s: 94%;
+   --brand-accent-l: 50%;
+
+   /* ===============================
+     Primary Scale (WCAG AA+)
+     =============================== */
+
+   --color-primary-900: hsl(var(--brand-primary-h), var(--brand-primary-s), 28%);
+   --color-primary-700: hsl(var(--brand-primary-h), var(--brand-primary-s), 36%);
+   --color-primary-500: hsl(var(--brand-primary-h), var(--brand-primary-s), var(--brand-primary-l));
+   --color-primary-300: hsl(var(--brand-primary-h), var(--brand-primary-s), 60%);
+   --color-primary-100: hsl(var(--brand-primary-h), var(--brand-primary-s), 92%);
+
+   /* ===============================
+     Accent Scale (CTA-safe)
+     =============================== */
+
+   --color-accent-900: hsl(var(--brand-accent-h), var(--brand-accent-s), 32%);
+   --color-accent-700: hsl(var(--brand-accent-h), var(--brand-accent-s), 42%);
+   --color-accent-500: hsl(var(--brand-accent-h), var(--brand-accent-s), var(--brand-accent-l));
+   --color-accent-300: hsl(var(--brand-accent-h), var(--brand-accent-s), 65%);
+   --color-accent-100: hsl(var(--brand-accent-h), var(--brand-accent-s), 92%);
+
+   /* ===============================
+     Neutrals (HSL for theme safety)
+     =============================== */
+
+   --color-bg-main: hsl(0, 0%, 100%);
+   --color-bg-muted: hsl(210, 20%, 98%);
+
+   --color-text-primary: hsl(0, 0%, 7%);
+   --color-text-secondary: hsl(215, 16%, 22%);
+
+   --color-border-subtle: hsl(214, 32%, 91%);
+
+   /* ===============================
+     Semantic Colors
+     =============================== */
+
+   --color-danger: hsl(0, 84%, 60%);
+   --color-success: hsl(142, 70%, 45%);
+   --color-warning: hsl(38, 92%, 50%);
+   --color-info: hsl(217, 91%, 60%);
+
+   --color-text-white: hsl(0, 0%, 100%);
+   --color-text-white-muted: hsla(0, 0%, 100%, 0.95);
+   --color-text-white-subtle: hsla(0, 0%, 100%, 0.8);
+   --color-text-white-dim: hsla(0, 0%, 100%, 0.7);
+
+   --color-overlay-dark: hsla(0, 0%, 0%, 0.5);
+   --color-overlay-darker: hsla(0, 0%, 0%, 0.6);
+   --color-overlay-darkest: hsla(0, 0%, 0%, 0.7);
+
+   --color-overlay-light: hsla(0, 0%, 100%, 0.1);
+
+   --color-shadow-overlay: hsla(0, 0%, 0%, 0.3);
+   --color-shadow-overlay-light: hsla(0, 0%, 0%, 0.2);
+   --color-shadow-overlay-soft: hsla(0, 0%, 0%, 0.08);
+
+   /* ===============================
+     Typography & Motion
+     =============================== */
+
+   --font-primary: 'Montserrat', sans-serif;
+
+   --container-max-width: 1200px;
+
+   --radius-sm: 4px;
+   --radius-md: 8px;
+   --radius-lg: 16px;
+
+   --transition-fast: 0.25s ease;
+   --transition-medium: 0.45s ease;
+   --transition-slow: 0.7s ease;
+
+   --shadow-soft: 0 8px 24px hsla(0, 0%, 0%, 0.08);
+   --shadow-strong: 0 16px 40px hsla(0, 0%, 0%, 0.15);
+}
+
+/* ===============================
+   Dark Theme Override
+   =============================== */
+
+[data-theme="dark"] {
+   --color-bg-main: hsl(222, 47%, 11%);
+   --color-bg-muted: hsl(222, 47%, 13%);
+
+   --color-text-primary: hsl(210, 40%, 98%);
+   --color-text-secondary: hsl(228, 50%, 90%);
+
+   --color-border-subtle: hsl(215, 28%, 17%);
+
+   --brand-primary-l: 62%;
+   --brand-accent-l: 58%;
+
+   /* Semantic colors remain consistent in dark theme */
+   --color-text-white: hsl(0, 0%, 100%);
+   --color-text-white-muted: hsla(0, 0%, 100%, 0.95);
+   --color-text-white-subtle: hsla(0, 0%, 100%, 0.8);
+   --color-text-white-dim: hsla(0, 0%, 100%, 0.7);
+}

@@ -1,0 +1,378 @@
+/* ========================================
+   Reviews/Testimonials Section Styles
+   Swiper-based implementation
+   ======================================== */
+
+.reviews-section {
+  background-color: var(--color-bg-main);
+  padding: 100px 0;
+  position: relative;
+}
+
+.reviews-swiper-wrapper {
+  margin-top: 50px;
+  position: relative;
+  padding: 40px 0 80px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===============================
+   Swiper Container Customization
+   =============================== */
+
+.reviews-swiper {
+  overflow: visible;
+  padding: 20px 0 60px;
+}
+
+.reviews-swiper .swiper-wrapper {
+  align-items: center;
+}
+
+/* ===============================
+   Review Card Styles
+   =============================== */
+
+.review-card {
+  padding: 50px 40px;
+  background-color: var(--color-bg-muted);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transition-slow), opacity var(--transition-slow), box-shadow var(--transition-slow);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* Active slide (center) - fully visible and scaled */
+.swiper-slide-active .review-card {
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: var(--shadow-strong);
+  border-color: var(--color-primary-300);
+}
+
+/* Side slides - scaled down and faded */
+.swiper-slide:not(.swiper-slide-active) .review-card {
+  transform: scale(0.85);
+  opacity: 0.5;
+}
+
+/* ===============================
+   Review Content
+   =============================== */
+
+.review-stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: var(--color-accent-500);
+}
+
+.review-text {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-bottom: 30px;
+  position: relative;
+  padding: 0 20px;
+  flex-grow: 1;
+}
+
+.review-text::before,
+.review-text::after {
+  content: '"';
+  font-size: 3rem;
+  color: var(--color-accent-300);
+  position: absolute;
+  font-family: Georgia, serif;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.review-text::before {
+  top: -15px;
+  left: 0;
+}
+
+.review-text::after {
+  bottom: -40px;
+  right: 0;
+}
+
+/* ===============================
+   Review Author
+   =============================== */
+
+.review-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.review-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-accent-500));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-white);
+  font-size: 24px;
+  font-weight: 700;
+  border: 3px solid var(--color-accent-500);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.review-info {
+  text-align: left;
+}
+
+.review-info h4 {
+  font-size: 1.125rem;
+  margin-bottom: 5px;
+  color: var(--color-text-primary);
+}
+
+.review-info p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* ===============================
+   Swiper Navigation Buttons
+   =============================== */
+
+.reviews-nav-prev,
+.reviews-nav-next {
+  min-width: 50px;
+  min-height: 50px;
+  /* aspect-ratio: 1/1; */
+  display: none;
+  border-radius: 50%;
+  background-color: var(--color-bg-main) !important;
+  color: var(--color-text-primary) !important;
+  border: 2px solid var(--color-border-subtle) !important;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-soft);
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+.reviews-nav-prev {
+  left: -70px;
+}
+
+.reviews-nav-next {
+  right: -70px;
+}
+
+.reviews-nav-prev::after,
+.reviews-nav-next::after {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--color-text-primary);
+  transition: color var(--transition-fast);
+}
+
+.reviews-nav-prev::after {
+  content: '\f053';
+  /* fa-chevron-left */
+  margin-left: -0.2em;
+}
+
+.reviews-nav-next::after {
+  content: '\f054';
+  /* fa-chevron-right */
+  margin-left: 0.2em;
+}
+
+.reviews-nav-prev:hover,
+.reviews-nav-next:hover {
+  background-color: var(--color-accent-500) !important;
+  border-color: var(--color-accent-500) !important;
+  transform: scale(1.1);
+  box-shadow: var(--shadow-strong);
+}
+
+.reviews-nav-prev:hover::after,
+.reviews-nav-next:hover::after {
+  color: var(--color-text-white) !important;
+}
+
+.reviews-nav-prev:active,
+.reviews-nav-next:active {
+  transform: scale(0.95);
+}
+
+.reviews-nav-prev:focus,
+.reviews-nav-next:focus {
+  outline: 2px solid var(--color-accent-500);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.reviews-nav-prev.swiper-button-disabled,
+.reviews-nav-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: all;
+}
+
+/* ===============================
+   Responsive Design
+   =============================== */
+
+/* Tablet - show 1 slide with partial previews */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .reviews-section {
+    padding: 80px 0;
+  }
+
+  .reviews-swiper-wrapper {
+    padding: 30px 0 60px;
+  }
+
+  .reviews-swiper {
+    padding: 15px 0 50px;
+  }
+
+  .review-card {
+    padding: 45px 35px;
+  }
+
+  /* Side slides less visible on tablet */
+  .swiper-slide:not(.swiper-slide-active) .review-card {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  .reviews-nav-prev {
+    left: 10px;
+  }
+
+  .reviews-nav-next {
+    right: 10px;
+  }
+}
+
+/* Mobile - show only active slide */
+@media (max-width: 767px) {
+  .reviews-section {
+    padding: 60px 0;
+  }
+
+  .reviews-swiper-wrapper {
+    margin-top: 40px;
+    padding: 20px 0 50px;
+  }
+
+  .reviews-swiper {
+    padding: 10px 0 40px;
+  }
+
+  .review-card {
+    padding: 40px 25px;
+  }
+
+  /* Hide side slides completely on mobile */
+  .swiper-slide:not(.swiper-slide-active) .review-card {
+    opacity: 0;
+    transform: scale(0.75);
+    pointer-events: none;
+  }
+
+  .review-text {
+    font-size: 1rem;
+    padding: 0 15px;
+    margin-bottom: 25px;
+  }
+
+  .review-text::before,
+  .review-text::after {
+    font-size: 2rem;
+  }
+
+  .review-text::before {
+    top: -10px;
+  }
+
+  .review-text::after {
+    bottom: -30px;
+  }
+
+  .reviews-nav-prev {
+    left: 10px;
+  }
+
+  .reviews-nav-next {
+    right: 10px;
+  }
+
+  .reviews-nav-prev,
+  .reviews-nav-next {
+    width: 45px;
+    height: 45px;
+  }
+
+  .reviews-nav-prev::after,
+  .reviews-nav-next::after {
+    font-size: 16px;
+  }
+}
+
+/* ===============================
+   Reduced Motion Support
+   =============================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .review-card,
+  .reviews-nav-prev,
+  .reviews-nav-next {
+    transition: none;
+  }
+
+  .swiper-slide:not(.swiper-slide-active) .review-card {
+    transform: scale(0.9);
+  }
+}
+
+/* ===============================
+   Dark Theme Adjustments
+   =============================== */
+
+[data-theme="dark"] .review-card {
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-border-subtle);
+}
+
+[data-theme="dark"] .swiper-slide-active .review-card {
+  border-color: var(--color-primary-300);
+}
+
+[data-theme="dark"] .reviews-nav-prev,
+[data-theme="dark"] .reviews-nav-next {
+  background-color: var(--color-bg-muted);
+  border-color: var(--color-border-subtle);
+}

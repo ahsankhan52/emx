@@ -1,0 +1,31 @@
+/* ========================================
+   Admin Panel Variables
+   ======================================== */
+
+:root {
+    /* Admin Sidebar */
+    --admin-sidebar-width: 260px;
+    --admin-sidebar-bg: var(--color-primary-900);
+    --admin-sidebar-text: var(--color-text-white-subtle);
+    --admin-sidebar-active: var(--color-accent-500);
+
+    /* Admin Header */
+    --admin-header-height: 60px;
+    --admin-header-bg: var(--color-bg-main);
+
+    /* Admin Content */
+    --admin-bg: var(--color-bg-muted);
+
+    /* Cards */
+    --card-bg: var(--color-bg-main);
+    --card-radius: var(--radius-md);
+
+    /* Spacing */
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+}
+
+.cke_notification {
+    display: none !important;
+}

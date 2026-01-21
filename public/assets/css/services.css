@@ -1,0 +1,163 @@
+/* ========================================
+   Services Section Styles
+   ======================================== */
+
+.services-section {
+  background-color: var(--color-bg-muted);
+  padding: 100px 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.service-card {
+  background-color: var(--color-bg-main);
+  border-radius: var(--radius-lg);
+  /* padding: 40px 30px; */
+  text-align: center;
+  transition: all var(--transition-medium);
+  border: 1px solid var(--color-border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+/* .service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent-500), var(--color-primary-500));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-medium);
+} */
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--color-primary-300);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+
+.service-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  position: relative;
+  margin-bottom: 1rem;
+
+}
+.service-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: var(--radius-lg); */
+  overflow: hidden;
+  box-shadow: var(--shadow-strong);
+  border: 1px solid var(--color-border-subtle);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* .service-card:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-700));
+} */
+
+.service-content{
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.service-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--color-text-primary);
+}
+
+.service-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-accent-500);
+  font-weight: 600;
+  font-size: 15px;
+  transition: all var(--transition-fast);
+}
+
+.service-link i {
+  transition: transform var(--transition-fast);
+}
+
+.service-link:hover {
+  color: var(--color-accent-700);
+  gap: 12px;
+}
+
+.service-link:hover i {
+  transform: translateX(4px);
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+
+.services-cta {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  background-color: var(--color-bg-muted);
+  border-radius: var(--radius-lg);
+}
+
+.services-cta h2 {
+  margin-bottom: 1rem;
+}
+
+.services-cta p {
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+
+@media (max-width: 767px) {
+  .services-section {
+    padding: 60px 0;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  .service-card {
+    padding: 30px 20px;
+  }
+}

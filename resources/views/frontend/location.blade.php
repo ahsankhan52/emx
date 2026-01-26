@@ -26,8 +26,13 @@
         <div class="container">
             <div class="location-content">
                 <div class="location-map">
-                    {!! $settings['map_embed_code'] ??
-        '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.8898272814595!2d-118.15274118939737!3d34.149160673008495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c33114b97839%3A0x421aae1db8562bf7!2sEMX%20Auto%20Repair!5e0!3m2!1sen!2s!4v1767919365751!5m2!1sen!2s" width="600" height="450" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="EMX Auto Repair Location Map"></iframe>' !!}
+                    {!!
+        $settings['location_link']
+        ?
+        '<iframe src="' . $settings['location_link'] . '" width="600" height="450" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="EMX Auto Repair Location Map"></iframe>'
+        :
+        '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.8898272814595!2d-118.15274118939737!3d34.149160673008495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c33114b97839%3A0x421aae1db8562bf7!2sEMX%20Auto%20Repair!5e0!3m2!1sen!2s!4v1767919365751!5m2!1sen!2s" width="600" height="450" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="EMX Auto Repair Location Map"></iframe>'
+                            !!}
                 </div>
 
                 <div class="location-info">

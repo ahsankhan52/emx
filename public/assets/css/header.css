@@ -126,7 +126,7 @@
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--color-accent-500);
+  color: var(--color-accent-text-on-light);
 }
 
 .nav-link:hover::after,

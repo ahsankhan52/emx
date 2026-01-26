@@ -131,12 +131,12 @@
   text-align: center;
   font-size: 14px;
 }
-.footer-bottom p {
-  color: var(--color-text-white-dim);
+
+.footer-bottom * {
+  color: var(--color-text-white) !important;
 }
 
 .footer-bottom a {
-  color: var(--color-text-white-dim);
   transition: color var(--transition-fast);
 }
 

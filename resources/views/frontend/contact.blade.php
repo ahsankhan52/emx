@@ -78,7 +78,8 @@
                         @if (isset($settings['social_links']) && is_array($settings['social_links']))
                             @foreach ($settings['social_links'] as $platform => $data)
                                 @if ($data['active'])
-                                    <a href="{{ $data['url'] }}" class="social-icon-btn" aria-label="{{ $platform }}" target="_blank">
+                                    <a href="{{ $data['url'] }}" class="social-icon-btn" aria-label="{{ $platform }} (opens in new tab)"
+                                        target="_blank" rel="noopener noreferrer">
                                         <i
                                             class="fab fa-{{ strtolower($platform) }}{{ strtolower($platform) === 'facebook' ? '-f' : '' }}"></i>
                                     </a>

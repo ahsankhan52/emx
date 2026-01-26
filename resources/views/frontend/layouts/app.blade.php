@@ -104,7 +104,9 @@
         </div>
     </header>
 
-    @yield('content')
+    <main id="main-content">
+        @yield('content')
+    </main>
 
     <!-- Footer -->
     <footer id="contact" class="footer">
@@ -128,15 +130,18 @@
                         @if(isset($settings['social_links']) && is_array($settings['social_links']))
                             @foreach($settings['social_links'] as $platform => $data)
                                 @if($data['active'] == "true")
-                                    <a href="{{ $data['url'] }}" class="social-link" aria-label="{{ $platform }}" target="_blank">
+                                    <a href="{{ $data['url'] }}" class="social-link" aria-label="{{ $platform }} (opens in new tab)"
+                                        target="_blank" rel="noopener noreferrer">
                                         <i
                                             class="fab fa-{{ strtolower($platform) }}{{ strtolower($platform) === 'facebook' ? '-f' : '' }}"></i>
                                     </a>
                                 @endif
                             @endforeach
                         @else
-                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="Facebook (opens in new tab)" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="Instagram (opens in new tab)" target="_blank"
+                                rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                         @endif
                     </div>
                 </div>

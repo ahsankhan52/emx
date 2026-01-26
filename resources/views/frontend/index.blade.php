@@ -124,7 +124,7 @@
                                             @endif
                                         </div>
                                         <div class="review-info">
-                                            <h4>{{ $review->user->name }}</h4>
+                                            <h3>{{ $review->user->name }}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@
         ($settings['location_link'])
         ? '<iframe src="' . $settings['location_link'] . '" width="600" height="450" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="EMX Auto Repair Location Map"></iframe>'
         : '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d347.09316260017414!2d-118.22366271239889!3d34.204610995785664!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2ea0dd8a7fe17%3A0x417c45b14f6cbe79!2sEMX%20AUTO!5e0!3m2!1sen!2s!4v1769371142676!5m2!1sen!2s" width="600" height="450" class="map-iframe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="EMX Auto Repair Location Map"></iframe>'
-                            !!}
+                                !!}
                 </div>
 
                 <div class="location-info">

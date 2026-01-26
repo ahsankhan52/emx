@@ -12,7 +12,7 @@ html {
 body {
   font-family: var(--font-primary);
   font-size: 16px;
-  /* line-height: 1.6; */
+  line-height: 1.6;
   color: var(--color-text-primary);
   background-color: var(--color-bg-main);
   transition: background-color var(--transition-medium), color var(--transition-medium);
@@ -95,8 +95,8 @@ p {
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-accent-500);
-  border-color: var(--color-accent-500);
+  color: var(--color-accent-text-on-light);
+  border-color: var(--color-accent-text-on-light);
 }
 
 .btn-secondary:hover {
@@ -130,6 +130,25 @@ p {
   border-width: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  background: var(--color-primary-900);
+  color: #fff;
+  padding: 15px 20px;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0 0 8px 0;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--color-accent-500);
+}
+
 .section {
   padding: 80px 0;
 }
@@ -143,6 +162,7 @@ p {
   margin-bottom: 1rem;
   position: relative;
   display: inline-block;
+  color: var(--color-text-primary);
 }
 
 .section-title h2::after {
@@ -283,7 +303,7 @@ p {
 }
 
 .contact-form-required {
-  color: var(--color-accent-500);
+  color: var(--color-accent-text-on-light);
 }
 
 .location-cta-buttons {

@@ -3,7 +3,7 @@
 @section('content')
     <div class="section-header">
         <h2>Users Management</h2>
-        <button class="btn btn-primary" id="add-user-btn"><i class="fas fa-user-plus"></i> Add User</button>
+        <button class="btn btn-primary" id="add-user-btn"><i class="fas fa-user-plus" aria-hidden="true"></i> Add User</button>
     </div>
 
     <div class="table-container">
@@ -21,7 +21,7 @@
                 <!-- Loaded via AJAX -->
                 <tr>
                     <td colspan="5" class="text-center p-4">
-                        <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+                        <div class="loading-spinner"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading...</div>
                     </td>
                 </tr>
             </tbody>
@@ -33,7 +33,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modal-title">Add User</h3>
-                <button class="close-modal"><i class="fas fa-times"></i></button>
+                <button class="close-modal" aria-label="Close"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
             <div class="modal-body">
                 <form id="item-form">
@@ -109,7 +109,7 @@
             // Load Users
             function loadUsers() {
                 const tbody = $('#users-table tbody');
-                tbody.html('<tr><td colspan="5" class="text-center p-4"><div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading...</div></td></tr>');
+                tbody.html('<tr><td colspan="5" class="text-center p-4"><div class="loading-spinner"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading...</div></td></tr>');
 
                 $.ajax({
                     url: '/api/users',
@@ -128,7 +128,7 @@
                             const imgUrl = u.image ? (u.image.startsWith('http') ? u.image : `/uploads/gallery/${u.image}`) : null;
                             const imgDisplay = imgUrl ?
                                 `<img src="${imgUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">` :
-                                `<div style="width:40px; height:40px; background:var(--color-bg-muted); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--color-text-muted);"><i class="fas fa-user"></i></div>`;
+                                `<div style="width:40px; height:40px; background:var(--color-bg-muted); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--color-text-muted);"><i class="fas fa-user" aria-hidden="true"></i></div>`;
 
                             const roleBadge = u.role === 'Admin' ?
                                 '<span class="badge bg-primary text-white" style="padding: 4px 8px; border-radius: 4px;">Admin</span>' :
@@ -140,8 +140,8 @@
                                                 <td>${u.email}</td>
                                                 <td>${roleBadge}</td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-secondary edit-user-btn" data-json='${JSON.stringify(u).replace(/'/g, "&#39;")}'><i class="fas fa-edit"></i></button>
-                                                    <button class="btn btn-sm btn-outline-danger delete-user-btn" data-id="${u.id}"><i class="fas fa-trash"></i></button>
+                                                    <button class="btn btn-sm btn-secondary edit-user-btn" data-json='${JSON.stringify(u).replace(/'/g, "&#39;")}' aria-label="Edit user"><i class="fas fa-edit" aria-hidden="true"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger delete-user-btn" data-id="${u.id}" aria-label="Delete user"><i class="fas fa-trash" aria-hidden="true"></i></button>
                                                 </td>
                                             </tr>`;
                         });

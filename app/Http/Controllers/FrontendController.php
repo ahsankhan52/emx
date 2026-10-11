@@ -54,4 +54,9 @@ class FrontendController extends Controller
         $page = Page::where('slug', 'privacy')->firstOrFail();
         return view('frontend.privacy', compact('page'));
     }
+
+    public function accessibility()
+    {
+        return view('frontend.accessibility');
+    }
 }

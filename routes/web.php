@@ -24,6 +24,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/location', 'location')->name('location');
     Route::get('/terms', 'terms')->name('terms');
     Route::get('/privacy-policy', 'privacyPolicy')->name('privacy');
+    Route::get('/accessibility', 'accessibility')->name('accessibility');
 });
 
 // Auth Routes

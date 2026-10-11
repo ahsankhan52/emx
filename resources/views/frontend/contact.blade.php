@@ -24,7 +24,7 @@
         <div class="container">
             <div class="contact-content centered-layout">
                 <div class="contact-header">
-                    <h3>{{ $page->content['form_title'] ?? 'Get In Touch' }}</h3>
+                    <h2>{{ $page->content['form_title'] ?? 'Get In Touch' }}</h2>
                     <p>{{ $page->content['form_subtitle'] ?? 'We are here to help. Reach out to us via phone, email, or visit our shop.' }}
                     </p>
                 </div>
@@ -32,10 +32,10 @@
                 <div class="contact-info-centered">
                     <div class="contact-item-row">
                         <div class="contact-icon-circle">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>Phone</h4>
+                            <h3>Phone</h3>
                             <p>
                                 @if (isset($settings['phone_numbers']) && is_array($settings['phone_numbers']))
                                     @foreach ($settings['phone_numbers'] as $phone)
@@ -51,10 +51,10 @@
 
                     <div class="contact-item-row">
                         <div class="contact-icon-circle">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>Email</h4>
+                            <h3>Email</h3>
                             <p><a href="mailto:{{ $settings['email'] ?? 'info@emxauto.com' }}">{{ $settings['email'] ??
                                     'info@emxauto.com' }}</a>
                             </p>
@@ -63,31 +63,31 @@
 
                     <div class="contact-item-row">
                         <div class="contact-icon-circle">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>Address</h4>
+                            <h3>Address</h3>
                             <p>{!! nl2br(e($settings['address'] ?? '2100 Verdugo Blvd, Montrose, CA 91020')) !!}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="contact-social-centered">
-                    <h4>Follow Us</h4>
+                    <h3>Follow Us</h3>
                     <div class="social-icons-list">
                         @if (isset($settings['social_links']) && is_array($settings['social_links']))
                             @foreach ($settings['social_links'] as $platform => $data)
                                 @if ($data['active'])
                                     <a href="{{ $data['url'] }}" class="social-icon-btn" aria-label="{{ $platform }} (opens in new tab)"
                                         target="_blank" rel="noopener noreferrer">
-                                        <i
+                                        <i aria-hidden="true"
                                             class="fab fa-{{ strtolower($platform) }}{{ strtolower($platform) === 'facebook' ? '-f' : '' }}"></i>
                                     </a>
                                 @endif
                             @endforeach
                         @else
-                            <a href="#" class="social-icon-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon-btn" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
                         @endif
                     </div>
                 </div>

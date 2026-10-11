@@ -116,7 +116,7 @@
                 </div>
 
                 @if ($errors->any())
-                    <div class="login-alert">
+                    <div class="login-alert" role="alert">
                         {{ $errors->first() }}
                     </div>
                 @endif
@@ -127,13 +127,15 @@
                     <div class="form-group">
                         <label for="email" class="form-label">Email Address</label>
                         <input type="email" id="email" name="email" class="form-input" value="{{ old('email') }}" required
-                            autofocus placeholder="Email address">
+                            autofocus autocomplete="username" placeholder="Email address"
+                            @if ($errors->has('email')) aria-invalid="true" @endif>
                     </div>
 
                     <div class="form-group">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" id="password" name="password" class="form-input" required
-                            placeholder="Account password">
+                            autocomplete="current-password" placeholder="Account password"
+                            @if ($errors->has('password')) aria-invalid="true" @endif>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-full">Sign In to Dashboard</button>

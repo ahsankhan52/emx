@@ -11,7 +11,7 @@
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-icon bg-primary">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-users" aria-hidden="true"></i>
             </div>
             <div class="stat-info">
                 <h3>{{ $stats['total_users'] }}</h3>
@@ -20,7 +20,7 @@
         </div>
         <div class="stat-card">
             <div class="stat-icon bg-success">
-                <i class="fas fa-wrench"></i>
+                <i class="fas fa-wrench" aria-hidden="true"></i>
             </div>
             <div class="stat-info">
                 <h3>{{ $stats['total_services'] }}</h3>
@@ -29,7 +29,7 @@
         </div>
         <div class="stat-card">
             <div class="stat-icon bg-info">
-                <i class="fas fa-images"></i>
+                <i class="fas fa-images" aria-hidden="true"></i>
             </div>
             <div class="stat-info">
                 <h3>{{ $stats['total_media'] }}</h3>
@@ -38,7 +38,7 @@
         </div>
         <div class="stat-card">
             <div class="stat-icon bg-warning">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
             </div>
             <div class="stat-info">
                 <h3>{{ number_format($stats['average_rating'], 1) }}</h3>
@@ -70,13 +70,13 @@
                                 <span class="review-on">
                                     @for($i = 1; $i <= 5; $i++)
                                         <i class="fas fa-star {{ $i <= $review->stars ? '' : 'review-off' }}"
-                                            style="font-size: 0.8rem;"></i>
+                                            style="font-size: 0.8rem;" aria-hidden="true"></i>
                                     @endfor
                                 </span>
                             </td>
                             <td>
-                                <a href="{{ route('admin.reviews') }}" class="btn btn-sm btn-secondary">
-                                    <i class="fas fa-eye"></i>
+                                <a href="{{ route('admin.reviews') }}" class="btn btn-sm btn-secondary" aria-label="View review">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>
@@ -109,8 +109,8 @@
                             <td>{{ $service->title }}</td>
                             <td class="text-muted" style="font-size: 0.85rem;">{{ $service->created_at->diffForHumans() }}</td>
                             <td>
-                                <a href="{{ route('admin.services') }}" class="btn btn-sm btn-secondary">
-                                    <i class="fas fa-edit"></i>
+                                <a href="{{ route('admin.services') }}" class="btn btn-sm btn-secondary" aria-label="Edit service">
+                                    <i class="fas fa-edit" aria-hidden="true"></i>
                                 </a>
                             </td>
                         </tr>

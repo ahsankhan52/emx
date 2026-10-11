@@ -91,14 +91,14 @@
                             <div class="day-label">{{ $day }}</div>
                             <div class="day-toggle">
                                 <label class="switch">
-                                    <input type="checkbox" class="day-active" checked>
+                                    <input type="checkbox" class="day-active" checked aria-label="{{ $day }} open">
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                             <div class="day-times">
-                                <input type="time" class="form-control form-control-inline day-start" value="09:00">
+                                <input type="time" class="form-control form-control-inline day-start" value="09:00" aria-label="{{ $day }} opening time">
                                 <span>to</span>
-                                <input type="time" class="form-control form-control-inline day-end" value="17:00">
+                                <input type="time" class="form-control form-control-inline day-end" value="17:00" aria-label="{{ $day }} closing time">
                             </div>
                         </div>
                     @endforeach
@@ -113,15 +113,15 @@
                 <div class="social-links-container">
                     @foreach(['Facebook' => 'facebook-f', 'Instagram' => 'instagram', 'LinkedIn' => 'linkedin-in', 'Twitter' => 'twitter', 'YouTube' => 'youtube'] as $platform => $icon)
                         <div class="social-row" data-platform="{{ $platform }}">
-                            <div class="social-icon"><i class="fab fa-{{ $icon }}"></i></div>
+                            <div class="social-icon"><i class="fab fa-{{ $icon }}" aria-hidden="true"></i></div>
                             <div class="social-label">{{ $platform }}</div>
                             <div class="social-input">
                                 <input type="url" class="form-control social-url"
-                                    placeholder="https://{{ strtolower($platform) }}.com/...">
+                                    placeholder="https://{{ strtolower($platform) }}.com/..." aria-label="{{ $platform }} URL">
                             </div>
                             <div class="social-toggle">
                                 <label class="switch">
-                                    <input type="checkbox" class="social-active">
+                                    <input type="checkbox" class="social-active" aria-label="{{ $platform }} enabled">
                                     <span class="slider round"></span>
                                 </label>
                             </div>

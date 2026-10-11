@@ -83,12 +83,12 @@ p {
 }
 
 .btn-primary {
-  background-color: var(--color-accent-500);
+  background-color: var(--color-btn-primary-bg);
   color: var(--color-text-white);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-accent-700);
+  background-color: var(--color-btn-primary-bg-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-strong);
 }
@@ -100,9 +100,40 @@ p {
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-accent-500);
+  background-color: var(--color-btn-primary-bg);
   color: var(--color-text-white);
   transform: translateY(-2px);
+}
+
+/* ===============================
+   Visible Keyboard Focus (WCAG 2.4.7 / 2.4.11)
+   =============================== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.footer-link:focus-visible,
+.social-link:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Fallback for browsers without :focus-visible */
+a:focus,
+button:focus {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .btn-large {
@@ -275,7 +306,7 @@ p {
 }
 
 .about-cta-buttons .btn-primary {
-  background-color: var(--color-accent-500);
+  background-color: var(--color-btn-primary-bg);
   color: var(--color-text-white);
 }
 

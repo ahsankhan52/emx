@@ -3,7 +3,7 @@
 @section('content')
     <div class="section-header">
         <h2>Services Management</h2>
-        <button class="btn btn-primary" id="add-service-btn"><i class="fas fa-plus"></i> Add Service</button>
+        <button class="btn btn-primary" id="add-service-btn"><i class="fas fa-plus" aria-hidden="true"></i> Add Service</button>
     </div>
 
     <div class="table-container">
@@ -20,7 +20,7 @@
                 <!-- Loaded via AJAX -->
                 <tr>
                     <td colspan="4" class="text-center p-4">
-                        <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+                        <div class="loading-spinner"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading...</div>
                     </td>
                 </tr>
             </tbody>
@@ -32,7 +32,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modal-title">Add Service</h3>
-                <button class="close-modal"><i class="fas fa-times"></i></button>
+                <button class="close-modal" aria-label="Close"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
             <div class="modal-body">
                 <form id="item-form">
@@ -110,7 +110,7 @@
                             const imgUrl = s.image ? (s.image.startsWith('http') ? s.image : `/uploads/gallery/${s.image}`) : null;
                             const imgDisplay = imgUrl ?
                                 `<img src="${imgUrl}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` :
-                                `<div style="width: 50px; height: 50px; background: var(--color-bg-muted); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted);"><i class="fas fa-wrench"></i></div>`;
+                                `<div style="width: 50px; height: 50px; background: var(--color-bg-muted); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted);"><i class="fas fa-wrench" aria-hidden="true"></i></div>`;
 
                             html += `
                                         <tr>
@@ -118,8 +118,8 @@
                                             <td class="font-weight-bold">${s.title}</td>
                                             <td>${s.description.substring(0, 100)}${s.description.length > 100 ? '...' : ''}</td>
                                             <td>
-                                                <button class="btn btn-sm btn-secondary edit-service-btn" data-json='${JSON.stringify(s).replace(/'/g, "&#39;")}'><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-sm btn-outline-danger delete-service-btn" data-id="${s.id}"><i class="fas fa-trash"></i></button>
+                                                <button class="btn btn-sm btn-secondary edit-service-btn" data-json='${JSON.stringify(s).replace(/'/g, "&#39;")}' aria-label="Edit service"><i class="fas fa-edit" aria-hidden="true"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger delete-service-btn" data-id="${s.id}" aria-label="Delete service"><i class="fas fa-trash" aria-hidden="true"></i></button>
                                             </td>
                                         </tr>
                                     `;

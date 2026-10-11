@@ -78,6 +78,19 @@
   min-width: 180px;
 }
 
+/* Secondary button sits on the dark hero image — use white text/border
+   for sufficient contrast (WCAG 1.4.3 / 1.4.11), orange fill on hover. */
+.hero-cta .btn-secondary {
+  color: var(--color-text-white);
+  border-color: var(--color-text-white);
+}
+
+.hero-cta .btn-secondary:hover {
+  background-color: var(--color-btn-primary-bg);
+  border-color: var(--color-btn-primary-bg);
+  color: var(--color-text-white);
+}
+
 /* ===============================
    Decorative Elements
    =============================== */

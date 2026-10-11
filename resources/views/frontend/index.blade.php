@@ -20,10 +20,10 @@
                 </p>
                 <div class="hero-cta">
                     <a href="{{ route('contact') }}" class="btn btn-primary btn-large">
-                        <i class="fas fa-phone"></i> Contact
+                        <i class="fas fa-phone" aria-hidden="true"></i> Contact
                     </a>
                     <a href="{{ route('services') }}" class="btn btn-secondary btn-large">
-                        <i class="fas fa-wrench"></i> Our Services
+                        <i class="fas fa-wrench" aria-hidden="true"></i> Our Services
                     </a>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                             <h3>{{ $service->title }}</h3>
                             <p>{{ Str::limit(strip_tags($service->description), 120) }}</p>
                             <a href="{{ route('services') }}" class="service-link">
-                                Learn More <i class="fas fa-arrow-right"></i>
+                                Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -105,9 +105,11 @@
                         @forelse($reviews as $review)
                             <div class="swiper-slide">
                                 <div class="review-card">
-                                    <div class="review-stars">
+                                    <div class="review-stars" role="img"
+                                        aria-label="Rated {{ $review->stars }} out of 5 stars">
                                         @for ($i = 1; $i <= 5; $i++)
-                                            <i class="fas fa-star {{ $i <= $review->stars ? '' : 'review-off' }}"></i>
+                                            <i class="fas fa-star {{ $i <= $review->stars ? '' : 'review-off' }}"
+                                                aria-hidden="true"></i>
                                         @endfor
                                     </div>
                                     <p class="review-text">
@@ -137,8 +139,10 @@
                     </div>
                 </div>
 
-                <div class="swiper-button-prev reviews-nav-prev" aria-label="Previous review"></div>
-                <div class="swiper-button-next reviews-nav-next" aria-label="Next review"></div>
+                <button type="button" class="swiper-button-prev reviews-nav-prev"
+                    aria-label="Previous review"></button>
+                <button type="button" class="swiper-button-next reviews-nav-next"
+                    aria-label="Next review"></button>
             </div>
         </div>
     </section>
@@ -167,7 +171,7 @@
                     <div class="location-details">
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
                                 <h4>Address</h4>
@@ -177,7 +181,7 @@
 
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-phone"></i>
+                                <i class="fas fa-phone" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
                                 <h4>Phone</h4>
@@ -194,7 +198,7 @@
 
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
                                 <h4>Email</h4>
@@ -206,7 +210,7 @@
 
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-clock"></i>
+                                <i class="fas fa-clock" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
                                 <h4>Business Hours</h4>
@@ -227,9 +231,9 @@
                     </div>
 
                     <div class="location-cta">
-                        <a href="{{ 'https://maps.google.com/?q=' . $settings['address'] ?? '' }}" target="_blank"
-                            rel="noopener noreferrer" class="btn btn-primary btn-large">
-                            <i class="fas fa-directions"></i> Get Directions
+                        <a href="https://maps.google.com/?q={{ urlencode($settings['address'] ?? 'EMX Auto Repair') }}"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
+                            <i class="fas fa-directions" aria-hidden="true"></i> Get Directions (opens in new tab)
                         </a>
                     </div>
                 </div>
@@ -244,11 +248,9 @@
         document.addEventListener('DOMContentLoaded', function () {
             const reviewsSwiper = new Swiper('.reviews-swiper', {
                 loop: false,
-                autoplay: true,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                },
+                // Autoplay intentionally disabled — auto-moving content with no
+                // pause control fails WCAG 2.2.2. Users advance via arrows/keyboard.
+                autoplay: false,
                 centeredSlides: true,
                 slidesPerView: 1,
                 spaceBetween: 40,

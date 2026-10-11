@@ -3,7 +3,7 @@
 @section('content')
     <div class="section-header">
         <h2>Reviews Management</h2>
-        <button class="btn btn-primary" id="add-review-btn"><i class="fas fa-plus"></i> Add Review</button>
+        <button class="btn btn-primary" id="add-review-btn"><i class="fas fa-plus" aria-hidden="true"></i> Add Review</button>
     </div>
 
     <div class="table-container">
@@ -28,7 +28,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modal-title">Add Review</h3>
-                <button class="close-modal"><i class="fas fa-times"></i></button>
+                <button class="close-modal" aria-label="Close"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
             <div class="modal-body">
                 <form id="item-form">
@@ -100,7 +100,7 @@
             // Load Reviews
             function loadReviews() {
                 const tbody = $('#reviews-table tbody');
-                tbody.html('<tr><td colspan="5" class="text-center p-4"><div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading...</div></td></tr>');
+                tbody.html('<tr><td colspan="5" class="text-center p-4"><div class="loading-spinner"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading...</div></td></tr>');
 
                 $.ajax({
                     url: '/api/reviews',
@@ -117,7 +117,7 @@
                         response.forEach(r => {
                             let stars = '';
                             for (let i = 1; i <= 5; i++) {
-                                stars += `<i class="fas fa-star ${i <= r.stars ? 'review-on' : 'review-off'}"></i>`;
+                                stars += `<i class="fas fa-star ${i <= r.stars ? 'review-on' : 'review-off'}" aria-hidden="true"></i>`;
                             }
 
                             // User info from relationship
@@ -129,7 +129,7 @@
                             const imgUrl = userImage ? (userImage.startsWith('http') ? userImage : `/uploads/gallery/${userImage}`) : null;
                             const imgDisplay = imgUrl ?
                                 `<img src="${imgUrl}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">` :
-                                `<div style="width:40px; height:40px; background:var(--color-bg-muted); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--color-text-muted);"><i class="fas fa-user"></i></div>`;
+                                `<div style="width:40px; height:40px; background:var(--color-bg-muted); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--color-text-muted);"><i class="fas fa-user" aria-hidden="true"></i></div>`;
 
                             html += `
                                                 <tr>
@@ -143,8 +143,8 @@
                                                     <td>${stars}</td>
                                                     <td>${r.description.substring(0, 50)}${r.description.length > 50 ? '...' : ''}</td>
                                                     <td>
-                                                        <button class="btn btn-sm btn-secondary edit-review-btn" data-id="${r.id}" data-json='${JSON.stringify(r).replace(/'/g, "&#39;")}'><i class="fas fa-edit"></i></button>
-                                                        <button class="btn btn-sm btn-danger delete-review-btn" data-id="${r.id}"><i class="fas fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-secondary edit-review-btn" data-id="${r.id}" data-json='${JSON.stringify(r).replace(/'/g, "&#39;")}' aria-label="Edit review"><i class="fas fa-edit" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-sm btn-danger delete-review-btn" data-id="${r.id}" aria-label="Delete review"><i class="fas fa-trash" aria-hidden="true"></i></button>
                                                     </td>
                                                 </tr>
                                             `;

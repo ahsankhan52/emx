@@ -28,6 +28,9 @@
 
 <body>
 
+    <!-- Skip to main content (WCAG 2.4.1) -->
+    <a href="#admin-content" class="skip-link">Skip to main content</a>
+
     <!-- Sidebar -->
     <aside class="admin-sidebar">
         <div class="sidebar-header">
@@ -36,40 +39,40 @@
             </div>
         </div>
 
-        <nav class="sidebar-nav">
+        <nav class="sidebar-nav" aria-label="Admin navigation">
             <a href="{{ route('admin.dashboard') }}"
                 class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <i class="fas fa-tachometer-alt"></i>
+                <i class="fas fa-tachometer-alt" aria-hidden="true"></i>
                 <span>Dashboard</span>
             </a>
             <a href="{{ route('admin.site-settings') }}"
                 class="nav-item {{ request()->routeIs('admin.site-settings') ? 'active' : '' }}">
-                <i class="fas fa-cogs"></i>
+                <i class="fas fa-cogs" aria-hidden="true"></i>
                 <span>Site Settings</span>
             </a>
             <a href="{{ route('admin.gallery') }}"
                 class="nav-item {{ request()->routeIs('admin.gallery') ? 'active' : '' }}">
-                <i class="fas fa-images"></i>
+                <i class="fas fa-images" aria-hidden="true"></i>
                 <span>Gallery</span>
             </a>
             <a href="{{ route('admin.services') }}"
                 class="nav-item {{ request()->routeIs('admin.services') ? 'active' : '' }}">
-                <i class="fas fa-wrench"></i>
+                <i class="fas fa-wrench" aria-hidden="true"></i>
                 <span>Services</span>
             </a>
             <a href="{{ route('admin.pages') }}"
                 class="nav-item {{ request()->routeIs('admin.pages*') ? 'active' : '' }}">
-                <i class="fas fa-file-alt"></i>
+                <i class="fas fa-file-alt" aria-hidden="true"></i>
                 <span>Pages</span>
             </a>
             <a href="{{ route('admin.users') }}"
                 class="nav-item {{ request()->routeIs('admin.users') ? 'active' : '' }}">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-users" aria-hidden="true"></i>
                 <span>Users</span>
             </a>
             <a href="{{ route('admin.reviews') }}"
                 class="nav-item {{ request()->routeIs('admin.reviews') ? 'active' : '' }}">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-star" aria-hidden="true"></i>
                 <span>Reviews</span>
             </a>
         </nav>
@@ -77,7 +80,7 @@
         <div class="sidebar-footer">
             <a href="{{ route('admin.account') }}"
                 class="nav-item {{ request()->routeIs('admin.account') ? 'active' : '' }}">
-                <i class="fas fa-user-circle"></i>
+                <i class="fas fa-user-circle" aria-hidden="true"></i>
                 <span>My Account</span>
             </a>
         </div>
@@ -87,22 +90,22 @@
     <main class="admin-main">
         <!-- Header -->
         <header class="admin-header">
-            <button id="sidebar-toggle" class="btn-icon">
-                <i class="fas fa-bars"></i>
+            <button id="sidebar-toggle" class="btn-icon" aria-label="Toggle sidebar" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
 
             <div class="header-right">
-                <a href="{{ route('home') }}" target="_blank" class="btn btn-text">
-                    <i class="fas fa-external-link-alt"></i> View Site
+                <a href="{{ route('home') }}" target="_blank" rel="noopener noreferrer" class="btn btn-text">
+                    <i class="fas fa-external-link-alt" aria-hidden="true"></i> View Site (opens in new tab)
                 </a>
                 <button id="logout-btn" class="btn btn-outline-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout
                 </button>
             </div>
         </header>
 
         <!-- Content Area -->
-        <div class="content-wrapper">
+        <div id="admin-content" class="content-wrapper" tabindex="-1">
             @yield('content')
         </div>
     </main>

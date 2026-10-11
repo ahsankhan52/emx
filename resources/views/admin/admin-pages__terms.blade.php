@@ -2,7 +2,7 @@
 @section('title', 'Edit Terms & Conditions - EMX Auto Repair Admin')
 @section('content')
     <div class="section-header">
-        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
         <h2>Edit Page: Terms & Conditions</h2>
         <button class="btn btn-primary" id="save-page-btn">Save Changes</button>
     </div>
@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <textarea class="form-control" id="terms_content" data-page-key="terms_content"
-                            rows="20"></textarea>
+                            rows="20" aria-label="Terms and conditions content"></textarea>
                     </div>
                 </div>
             </div>

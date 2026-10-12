@@ -41,7 +41,7 @@
 
 .contact-item i {
   font-size: 16px;
-  color: var(--color-accent-500);
+  color: var(--color-accent-on-dark);
 }
 
 .contact-item a {

@@ -37,6 +37,22 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label>Footer Logo</label>
+                    <div class="image-select-container">
+                        <input type="hidden" id="footer_logo">
+                        <div class="preview-img-box" id="footer_logo-preview"
+                            style="width: 150px; height: 60px; background: transparent; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <span class="text-muted small">No Footer Logo</span>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-secondary open-gallery-modal"
+                            data-input-target="#footer_logo" data-preview-target="#footer_logo-preview">Change Footer
+                            Logo</button>
+                        <small class="text-muted"
+                            style="display: block; margin-top: 8px;">Shown on the dark footer. Leave empty to reuse the
+                            main logo.</small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label>Favicon</label>
                     <div class="image-select-container">
                         <input type="hidden" id="favicon">

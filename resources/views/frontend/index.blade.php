@@ -74,7 +74,8 @@
                         <div class="service-content">
                             <h3>{{ $service->title }}</h3>
                             <p>{{ Str::limit(strip_tags($service->description), 120) }}</p>
-                            <a href="{{ route('services') }}" class="service-link">
+                            <a href="{{ route('services') }}" class="service-link"
+                                aria-label="Learn more about {{ $service->title }}">
                                 Learn More <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>

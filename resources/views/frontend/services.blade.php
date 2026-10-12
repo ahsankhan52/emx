@@ -37,7 +37,8 @@
                             <div class="service-description">
                                 {!! $service->description !!}
                             </div>
-                            <a href="{{ route('contact') }}" class="service-link">
+                            <a href="{{ route('contact') }}" class="service-link"
+                                aria-label="Book service: {{ $service->title }}">
                                 Book Service <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>

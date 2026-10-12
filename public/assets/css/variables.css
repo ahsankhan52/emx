@@ -78,6 +78,12 @@
      so orange icons/accents stay legible (WCAG 1.4.3 / 1.4.11). */
   --color-accent-on-dark: hsl(var(--brand-accent-h), var(--brand-accent-s), 70%);
 
+  /* Opaque dark backdrop painted behind hero/banner images. The photo covers
+     it, so it's invisible in practice — but it guarantees an opaque dark
+     background so white/accent text always meets contrast (and stays readable
+     if an image fails to load). ~18:1 for white, ~6:1 for the accent orange. */
+  --color-hero-backdrop: hsl(215, 50%, 9%);
+
   --color-overlay-dark: hsla(0, 0%, 0%, 0.5);
   --color-overlay-darker: hsla(0, 0%, 0%, 0.6);
   --color-overlay-darkest: hsla(0, 0%, 0%, 0.7);

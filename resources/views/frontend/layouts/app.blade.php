@@ -120,8 +120,14 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <div class="footer-logo">
-                        @if(isset($settings['logo']) && $settings['logo'])
-                            <img src="{{ asset('uploads/gallery/' . $settings['logo']) }}"
+                        @php
+                            // Prefer a dedicated footer logo; fall back to the main logo.
+                            $footerLogo = !empty($settings['footer_logo'])
+                                ? $settings['footer_logo']
+                                : ($settings['logo'] ?? null);
+                        @endphp
+                        @if($footerLogo)
+                            <img src="{{ asset('uploads/gallery/' . $footerLogo) }}"
                                 alt="{{ $settings['company_name'] ?? 'EMX Auto Logo' }}" style="max-height: 50px;">
                         @else
                             <span class="accent">EMX</span> Auto

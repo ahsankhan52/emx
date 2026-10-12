@@ -46,6 +46,10 @@ function loadSettings() {
                 $('#logo').val(response.logo);
                 updateImagePreview('#logo', response.logo);
             }
+            if (response.footer_logo) {
+                $('#footer_logo').val(response.footer_logo);
+                updateImagePreview('#footer_logo', response.footer_logo);
+            }
             if (response.favicon) {
                 $('#favicon').val(response.favicon);
                 updateImagePreview('#favicon', response.favicon);
@@ -143,7 +147,7 @@ function saveSettings() {
     const data = {};
 
     // Simple Fields
-    ['company_name', 'site_title', 'site_description', 'email', 'address', 'location_link', 'logo', 'favicon'].forEach(f => {
+    ['company_name', 'site_title', 'site_description', 'email', 'address', 'location_link', 'logo', 'footer_logo', 'favicon'].forEach(f => {
         data[f] = $(`#${f}`).val();
     });
 

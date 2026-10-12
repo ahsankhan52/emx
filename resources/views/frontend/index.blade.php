@@ -106,8 +106,9 @@
                         @forelse($reviews as $review)
                             <div class="swiper-slide">
                                 <div class="review-card">
-                                    <div class="review-stars" role="img"
-                                        aria-label="Rated {{ $review->stars }} out of 5 stars">
+                                    <div class="review-stars">
+                                        <span class="visually-hidden">Rated {{ $review->stars }} out of 5
+                                            stars</span>
                                         @for ($i = 1; $i <= 5; $i++)
                                             <i class="fas fa-star {{ $i <= $review->stars ? '' : 'review-off' }}"
                                                 aria-hidden="true"></i>

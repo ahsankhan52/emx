@@ -77,7 +77,7 @@
                     <div class="social-icons-list">
                         @if (isset($settings['social_links']) && is_array($settings['social_links']))
                             @foreach ($settings['social_links'] as $platform => $data)
-                                @if ($data['active'])
+                                @if ($data['active'] && !empty($data['url']))
                                     <a href="{{ $data['url'] }}" class="social-icon-btn" aria-label="{{ $platform }} (opens in new tab)"
                                         target="_blank" rel="noopener noreferrer">
                                         <i aria-hidden="true"

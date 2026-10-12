@@ -98,9 +98,9 @@
                 <div class="header-content__r">
                     <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation"
                         aria-expanded="false">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
                     </button>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     <div class="footer-social">
                         @if(isset($settings['social_links']) && is_array($settings['social_links']))
                             @foreach($settings['social_links'] as $platform => $data)
-                                @if($data['active'] == "true")
+                                @if($data['active'] == "true" && !empty($data['url']))
                                     <a href="{{ $data['url'] }}" class="social-link" aria-label="{{ $platform }} (opens in new tab)"
                                         target="_blank" rel="noopener noreferrer">
                                         <i aria-hidden="true"
@@ -151,7 +151,7 @@
 
                 <div class="footer-column">
                     <h4>Quick Links</h4>
-                    <nav class="footer-links" aria-label="Footer quick links">
+                    <div class="footer-links">
                         <a href="{{ route('home') }}" class="footer-link">
                             <i class="fas fa-chevron-right" aria-hidden="true"></i> Home
                         </a>
@@ -170,18 +170,18 @@
                         <a href="{{ route('accessibility') }}" class="footer-link">
                             <i class="fas fa-chevron-right" aria-hidden="true"></i> Accessibility
                         </a>
-                    </nav>
+                    </div>
                 </div>
 
                 <div class="footer-column">
                     <h4>Services</h4>
-                    <nav class="footer-links" aria-label="Footer services">
+                    <div class="footer-links">
                         @foreach($footerServices as $service)
                             <a href="{{ route('services') }}" class="footer-link">
                                 <i class="fas fa-chevron-right" aria-hidden="true"></i> {{ $service->title }}
                             </a>
                         @endforeach
-                    </nav>
+                    </div>
                 </div>
 
                 <div class="footer-column">

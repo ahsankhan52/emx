@@ -86,7 +86,7 @@
 }
 
 .footer-contact-item i {
-  color: var(--color-accent-500);
+  color: var(--color-accent-on-dark);
   font-size: 18px;
   margin-top: 2px;
   flex-shrink: 0;

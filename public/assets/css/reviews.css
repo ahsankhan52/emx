@@ -73,7 +73,8 @@
   gap: 5px;
   margin-bottom: 25px;
   font-size: 20px;
-  color: var(--color-accent-500);
+  /* Accessible orange (>=4.5:1 on card bg) — accent-500 was only 2.9:1 (WCAG 1.4.3/1.4.11) */
+  color: var(--color-accent-text-on-light);
 }
 
 .review-text {

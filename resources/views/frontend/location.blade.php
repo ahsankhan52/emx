@@ -105,7 +105,8 @@
                     <div class="location-cta location-cta-buttons">
                         <a href="{{ $settings['location_link'] ?? 'https://maps.google.com/?q=EMX+AUTO,+2100+Verdugo+Blvd,+Montrose,+CA+91020' }}"
                             target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
-                            <i class="fas fa-directions" aria-hidden="true"></i> Get Directions (opens in new tab)
+                            <i class="fas fa-directions" aria-hidden="true"></i> Get Directions
+                            <span class="visually-hidden">(opens in new tab)</span>
                         </a>
                         <a href="{{ route('contact') }}" class="btn btn-secondary btn-large">
                             <i class="fas fa-envelope" aria-hidden="true"></i> Contact Us

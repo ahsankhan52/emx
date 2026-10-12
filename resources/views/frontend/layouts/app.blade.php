@@ -45,8 +45,10 @@
     <!-- Skip to main content (WCAG 2.4.1) -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Top Contact Bar -->
-    <div class="top-bar">
+    <!-- Site Header: one banner landmark so all header content lives in a region -->
+    <header class="site-header">
+        <!-- Top Contact Bar -->
+        <div class="top-bar">
         <div class="container">
             <div class="top-bar-content">
                 <div class="contact-info">
@@ -69,8 +71,8 @@
         </div>
     </div>
 
-    <!-- Main Header -->
-    <header class="main-header">
+        <!-- Main Header -->
+        <div class="main-header">
         <div class="container">
             <div class="header-content">
                 <a href="{{ route('home') }}" class="logo">
@@ -104,6 +106,7 @@
                     </button>
                 </div>
             </div>
+        </div>
         </div>
     </header>
 

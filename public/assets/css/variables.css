@@ -73,6 +73,11 @@
   --color-btn-primary-bg-hover: hsl(var(--brand-accent-h), var(--brand-accent-s), 30%);
   --color-focus-ring: hsl(var(--brand-accent-h), 100%, 35%);
 
+  /* Accent tuned for contrast on dark surfaces (top-bar / footer).
+     accent-500 is only ~3.3:1 on primary-900; this lighter tone is ~5:1
+     so orange icons/accents stay legible (WCAG 1.4.3 / 1.4.11). */
+  --color-accent-on-dark: hsl(var(--brand-accent-h), var(--brand-accent-s), 70%);
+
   --color-overlay-dark: hsla(0, 0%, 0%, 0.5);
   --color-overlay-darker: hsla(0, 0%, 0%, 0.6);
   --color-overlay-darkest: hsla(0, 0%, 0%, 0.7);

@@ -96,7 +96,8 @@
 
             <div class="header-right">
                 <a href="{{ route('home') }}" target="_blank" rel="noopener noreferrer" class="btn btn-text">
-                    <i class="fas fa-external-link-alt" aria-hidden="true"></i> View Site (opens in new tab)
+                    <i class="fas fa-external-link-alt" aria-hidden="true"></i> View Site
+                    <span class="visually-hidden">(opens in new tab)</span>
                 </a>
                 <button id="logout-btn" class="btn btn-outline-danger">
                     <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Logout

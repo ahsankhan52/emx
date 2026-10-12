@@ -235,7 +235,8 @@
                     <div class="location-cta">
                         <a href="https://maps.google.com/?q={{ urlencode($settings['address'] ?? 'EMX Auto Repair') }}"
                             target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
-                            <i class="fas fa-directions" aria-hidden="true"></i> Get Directions (opens in new tab)
+                            <i class="fas fa-directions" aria-hidden="true"></i> Get Directions
+                            <span class="visually-hidden">(opens in new tab)</span>
                         </a>
                     </div>
                 </div>

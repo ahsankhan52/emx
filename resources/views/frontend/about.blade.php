@@ -24,8 +24,13 @@
     <section class="about-section section">
         <div class="container">
             <div class="about-dynamic-content">
-                @if (isset($page->content))
-                    {!! $page->content['main_content'] !!}
+                @if (isset($page->content) && !empty($page->content['main_content']))
+                    @php
+                        // Strip empty paragraphs left by the rich-text editor (avoids blank
+                        // <p> content being exposed to screen readers).
+                        $mainContent = preg_replace('/<p>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>/i', '', $page->content['main_content']);
+                    @endphp
+                    {!! $mainContent !!}
                 @else
                     <p>Add some content to show here.</p>
                 @endif

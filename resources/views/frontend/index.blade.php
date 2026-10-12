@@ -48,8 +48,14 @@
                         @endif
                     </h2>
                     <div class="about-description">
-                        {!! $page->content['about_description'] ??
-        '<p>At EMX Auto Diagnosis and Repair, we\'ve been serving our community with top-quality automotive services for over two decades.</p>' !!}
+                        @php
+                            $aboutDesc = $page->content['about_description']
+                                ?? '<p>At EMX Auto Diagnosis and Repair, we\'ve been serving our community with top-quality automotive services for over two decades.</p>';
+                            // Strip empty paragraphs the rich-text editor can leave behind
+                            // (an empty <p> is exposed to screen readers as confusing blank content).
+                            $aboutDesc = preg_replace('/<p>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>/i', '', $aboutDesc);
+                        @endphp
+                        {!! $aboutDesc !!}
                     </div>
                 </div>
             </div>

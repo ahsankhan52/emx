@@ -41,8 +41,8 @@
                     <div class="image-select-container">
                         <input type="hidden" id="footer_logo">
                         <div class="preview-img-box" id="footer_logo-preview"
-                            style="width: 150px; height: 60px; background: var(--color-primary-900); margin-bottom: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                            <span class="small" style="color: rgba(255, 255, 255, 0.6);">No Footer Logo</span>
+                            style="width: 150px; height: 60px; background: transparent; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <span class="text-muted small">No Footer Logo</span>
                         </div>
                         <button type="button" class="btn btn-sm btn-secondary open-gallery-modal"
                             data-input-target="#footer_logo" data-preview-target="#footer_logo-preview">Change Footer

@@ -2,7 +2,7 @@
 @section('title', 'Edit Home Page - EMX Auto Repair Admin')
 @section('content')
     <div class="section-header">
-        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
         <h2>Edit Page: Home</h2>
         <button class="btn btn-primary" id="save-page-btn">Save Changes</button>
     </div>

@@ -2,7 +2,7 @@
 @section('title', 'Edit About Page - EMX Auto Repair Admin')
 @section('content')
     <div class="section-header">
-        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
         <h2>Edit Page: About</h2>
         <button class="btn btn-primary" id="save-page-btn">Save Changes</button>
     </div>
@@ -46,7 +46,7 @@
                 <div class="card-header">Main Content</div>
                 <div class="card-body">
                     <div class="form-group">
-                        <textarea class="form-control" id="main_content" data-page-key="main_content" rows="20"></textarea>
+                        <textarea class="form-control" id="main_content" data-page-key="main_content" rows="20" aria-label="Main content"></textarea>
                     </div>
                 </div>
             </div>

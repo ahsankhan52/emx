@@ -3,18 +3,18 @@
     <div class="modal-content modal-lg">
         <div class="modal-header">
             <h3>Select Image</h3>
-            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <button class="close-modal" aria-label="Close"><i class="fas fa-times" aria-hidden="true"></i></button>
         </div>
         <div class="modal-body">
             <div class="gallery-controls mb-3">
-                <select id="gallery-modal-sort" class="form-control" style="width: auto;">
+                <select id="gallery-modal-sort" class="form-control" style="width: auto;" aria-label="Sort gallery images">
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
                 </select>
             </div>
             <div class="gallery-grid small-grid" id="modal-gallery-grid">
                 <!-- Images loaded via AJAX -->
-                <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+                <div class="loading-spinner"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading...</div>
             </div>
         </div>
         <div class="modal-footer">

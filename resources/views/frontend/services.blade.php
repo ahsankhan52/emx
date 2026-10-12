@@ -22,8 +22,9 @@
     </section>
 
     <!-- Services Content -->
-    <section class="services-section section">
+    <section class="services-section section" aria-labelledby="services-heading">
         <div class="container">
+            <h2 id="services-heading" class="visually-hidden">Our Services</h2>
             <div class="services-grid">
                 @forelse($services as $service)
                     <div class="service-card">
@@ -36,8 +37,9 @@
                             <div class="service-description">
                                 {!! $service->description !!}
                             </div>
-                            <a href="{{ route('contact') }}" class="service-link">
-                                Book Service <i class="fas fa-arrow-right"></i>
+                            <a href="{{ route('contact') }}" class="service-link"
+                                aria-label="Book service: {{ $service->title }}">
+                                Book Service <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -54,13 +56,13 @@
                 </p>
                 <div class="cta-buttons">
                     <a href="{{ route('contact') }}" class="btn btn-primary btn-large">
-                        <i class="fas fa-calendar-check"></i> Contact Us
+                        <i class="fas fa-calendar-check" aria-hidden="true"></i> Contact Us
                     </a>
                     @php
                         $phone = isset($settings['phone_numbers']) && count($settings['phone_numbers']) > 0 ? $settings['phone_numbers'][0]['number'] : '818-330-9970';
                     @endphp
                     <a href="tel:{{ $phone }}" class="btn btn-secondary btn-large">
-                        <i class="fas fa-phone"></i> Call Now
+                        <i class="fas fa-phone" aria-hidden="true"></i> Call Now
                     </a>
                 </div>
             </div>

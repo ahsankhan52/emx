@@ -36,25 +36,25 @@
                 </div>
 
                 <div class="location-info">
-                    <h3>{{ $page->content['info_title'] ?? 'Get In Touch' }}</h3>
+                    <h2>{{ $page->content['info_title'] ?? 'Get In Touch' }}</h2>
 
                     <div class="location-details">
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
-                                <h4>Address</h4>
+                                <h3>Address</h3>
                                 <p>{!! nl2br(e($settings['address'] ?? '2100 Verdugo Blvd, Montrose, CA 91020')) !!}</p>
                             </div>
                         </div>
 
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-phone"></i>
+                                <i class="fas fa-phone" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
-                                <h4>Phone</h4>
+                                <h3>Phone</h3>
                                 <p>
                                     @if (isset($settings['phone_numbers']) && is_array($settings['phone_numbers']))
                                         @foreach ($settings['phone_numbers'] as $phone)
@@ -70,10 +70,10 @@
 
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
-                                <h4>Email</h4>
+                                <h3>Email</h3>
                                 <p><a href="mailto:{{ $settings['email'] ?? 'info@emxauto.com' }}">{{ $settings['email'] ??
                                         'info@emxauto.com' }}</a>
                                 </p>
@@ -82,10 +82,10 @@
 
                         <div class="location-detail">
                             <div class="location-detail-icon">
-                                <i class="fas fa-clock"></i>
+                                <i class="fas fa-clock" aria-hidden="true"></i>
                             </div>
                             <div class="location-detail-content">
-                                <h4>Business Hours</h4>
+                                <h3>Business Hours</h3>
                                 <p>
                                     @if (isset($settings['business_hours']) && is_array($settings['business_hours']))
                                         @foreach ($settings['business_hours'] as $day => $hours)
@@ -105,10 +105,10 @@
                     <div class="location-cta location-cta-buttons">
                         <a href="{{ $settings['location_link'] ?? 'https://maps.google.com/?q=EMX+AUTO,+2100+Verdugo+Blvd,+Montrose,+CA+91020' }}"
                             target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
-                            <i class="fas fa-directions"></i> Get Directions
+                            <i class="fas fa-directions" aria-hidden="true"></i> Get Directions (opens in new tab)
                         </a>
                         <a href="{{ route('contact') }}" class="btn btn-secondary btn-large">
-                            <i class="fas fa-envelope"></i> Contact Us
+                            <i class="fas fa-envelope" aria-hidden="true"></i> Contact Us
                         </a>
                     </div>
                 </div>

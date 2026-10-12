@@ -42,13 +42,16 @@
 
 <body>
 
+    <!-- Skip to main content (WCAG 2.4.1) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Top Contact Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="top-bar-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
                         @php
                             $firstPhone = isset($settings['phone_numbers']) && count($settings['phone_numbers']) > 0
                                 ? $settings['phone_numbers'][0]
@@ -58,7 +61,7 @@
                             {{ $firstPhone['number'] }}</a>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <span>{{ $settings['address'] ?? '2100 Verdugo Blvd, Montrose CA 91020' }}</span>
                     </div>
                 </div>
@@ -79,7 +82,7 @@
                     @endif
                 </a>
 
-                <nav id="nav-menu" class="nav-menu">
+                <nav id="nav-menu" class="nav-menu" aria-label="Primary navigation">
                     <a href="{{ route('home') }}"
                         class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                     <a href="{{ route('services') }}"
@@ -104,7 +107,7 @@
         </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
         @yield('content')
     </main>
 
@@ -132,47 +135,50 @@
                                 @if($data['active'] == "true")
                                     <a href="{{ $data['url'] }}" class="social-link" aria-label="{{ $platform }} (opens in new tab)"
                                         target="_blank" rel="noopener noreferrer">
-                                        <i
+                                        <i aria-hidden="true"
                                             class="fab fa-{{ strtolower($platform) }}{{ strtolower($platform) === 'facebook' ? '-f' : '' }}"></i>
                                     </a>
                                 @endif
                             @endforeach
                         @else
                             <a href="#" class="social-link" aria-label="Facebook (opens in new tab)" target="_blank"
-                                rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                                rel="noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
                             <a href="#" class="social-link" aria-label="Instagram (opens in new tab)" target="_blank"
-                                rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                                rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
                         @endif
                     </div>
                 </div>
 
                 <div class="footer-column">
                     <h4>Quick Links</h4>
-                    <nav class="footer-links">
+                    <nav class="footer-links" aria-label="Footer quick links">
                         <a href="{{ route('home') }}" class="footer-link">
-                            <i class="fas fa-chevron-right"></i> Home
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i> Home
                         </a>
                         <a href="{{ route('about') }}" class="footer-link">
-                            <i class="fas fa-chevron-right"></i> About Us
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i> About Us
                         </a>
                         <a href="{{ route('services') }}" class="footer-link">
-                            <i class="fas fa-chevron-right"></i> Services
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i> Services
                         </a>
                         <a href="{{ route('location') }}" class="footer-link">
-                            <i class="fas fa-chevron-right"></i> Location
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i> Location
                         </a>
                         <a href="{{ route('contact') }}" class="footer-link">
-                            <i class="fas fa-chevron-right"></i> Contact
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i> Contact
+                        </a>
+                        <a href="{{ route('accessibility') }}" class="footer-link">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i> Accessibility
                         </a>
                     </nav>
                 </div>
 
                 <div class="footer-column">
                     <h4>Services</h4>
-                    <nav class="footer-links">
+                    <nav class="footer-links" aria-label="Footer services">
                         @foreach($footerServices as $service)
                             <a href="{{ route('services') }}" class="footer-link">
-                                <i class="fas fa-chevron-right"></i> {{ $service->title }}
+                                <i class="fas fa-chevron-right" aria-hidden="true"></i> {{ $service->title }}
                             </a>
                         @endforeach
                     </nav>
@@ -181,13 +187,13 @@
                 <div class="footer-column">
                     <h4>Contact Info</h4>
                     <div class="footer-contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <div>
                             {!! nl2br(e($settings['address'] ?? '2100 Verdugo Blvd, Montrose CA 91020')) !!}
                         </div>
                     </div>
                     <div class="footer-contact-item">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
                         <div>
                             @if (isset($settings['phone_numbers']) && is_array($settings['phone_numbers']))
                                 @foreach ($settings['phone_numbers'] as $phone)
@@ -199,12 +205,12 @@
                         </div>
                     </div>
                     <div class="footer-contact-item">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <a href="mailto:{{ $settings['email'] ?? 'info@emxauto.com' }}">{{ $settings['email'] ??
                             'info@emxauto.com' }}</a>
                     </div>
                     <div class="footer-contact-item">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
                         <div>
                             @if (isset($settings['business_hours']) && is_array($settings['business_hours']))
                                 @if(isset($settings['business_hours']['Monday']))

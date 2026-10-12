@@ -2,7 +2,7 @@
 @section('title', 'Edit Contact Page - EMX Auto Repair Admin')
 @section('content')
     <div class="section-header">
-        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="{{ route('admin.pages') }}" class="btn btn-secondary"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</a>
         <h2>Edit Page: Contact</h2>
         <button class="btn btn-primary" id="save-page-btn">Save Changes</button>
     </div>
@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <textarea class="form-control" id="contact_content" data-page-key="contact_content"
-                            rows="10"></textarea>
+                            rows="10" aria-label="Contact information content"></textarea>
                     </div>
                 </div>
             </div>

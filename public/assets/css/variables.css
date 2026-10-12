@@ -66,6 +66,13 @@
   --color-accent-text-on-light: hsl(var(--brand-accent-h), 100%, 35%);
   /* High contrast for text on white (AA compliant) */
 
+  /* Accessible filled-button colors — fixed lightness so white text
+     stays >=4.5:1 regardless of theme (WCAG 1.4.3). ~4.9:1 on the base
+     and darker on hover. Used for .btn-primary across the site/admin. */
+  --color-btn-primary-bg: hsl(var(--brand-accent-h), var(--brand-accent-s), 38%);
+  --color-btn-primary-bg-hover: hsl(var(--brand-accent-h), var(--brand-accent-s), 30%);
+  --color-focus-ring: hsl(var(--brand-accent-h), 100%, 35%);
+
   --color-overlay-dark: hsla(0, 0%, 0%, 0.5);
   --color-overlay-darker: hsla(0, 0%, 0%, 0.6);
   --color-overlay-darkest: hsla(0, 0%, 0%, 0.7);

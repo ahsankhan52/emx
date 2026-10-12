@@ -50,15 +50,15 @@
         <h2>Media Gallery</h2>
 
         <div class="header-actions" style="display: flex; gap: 10px; align-items: center;">
-            <select id="gallery-sort" class="form-control" style="width: auto; display: inline-block;">
+            <select id="gallery-sort" class="form-control" style="width: auto; display: inline-block;" aria-label="Sort gallery images">
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
             </select>
 
             <input type="file" id="gallery-upload-input" class="gallery-upload-area" multiple
-                accept="image/jpeg,image/png,image/jpg,image/webp">
+                accept="image/jpeg,image/png,image/jpg,image/webp" aria-label="Upload media files">
             <button class="btn btn-primary" id="upload-media-btn">
-                <i class="fas fa-cloud-upload-alt"></i> Upload Media
+                <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i> Upload Media
             </button>
         </div>
     </div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="gallery-grid" id="gallery-container">
-        <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading gallery...</div>
+        <div class="loading-spinner"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading gallery...</div>
     </div>
 
 @endsection
@@ -132,7 +132,7 @@
             const container = $('#gallery-container');
             // Only show full loading spinner if container is empty or we are doing a full refresh
             if (container.children().length === 0) {
-                container.html('<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading gallery...</div>');
+                container.html('<div class="loading-spinner"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Loading gallery...</div>');
             }
 
             $.ajax({
@@ -148,7 +148,7 @@
                     container.append(placeholders);
 
                     if (response.length === 0 && placeholders.length === 0) {
-                        container.html('<div class="empty-state"><i class="fas fa-images fa-3x mb-3"></i><p>No images found in gallery.</p></div>');
+                        container.html('<div class="empty-state"><i class="fas fa-images fa-3x mb-3" aria-hidden="true"></i><p>No images found in gallery.</p></div>');
                         return;
                     }
 
@@ -174,8 +174,8 @@
                                                 <img src="${image.url}" alt="${image.original_name}">
                                             </div>
                                             <div class="gallery-actions">
-                                                <button class="btn-icon text-danger delete-image-btn" data-id="${image.id}" title="Delete">
-                                                    <i class="fas fa-trash"></i>
+                                                <button class="btn-icon text-danger delete-image-btn" data-id="${image.id}" title="Delete" aria-label="Delete image">
+                                                    <i class="fas fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -196,7 +196,7 @@
                                         <div class="gallery-item uploading-placeholder" id="${tempId}">
                                             <div class="gallery-img" style="flex-direction: column;">
                                                 <div class="spinner-border text-primary" role="status" style="margin-bottom: 10px;">
-                                                     <i class="fas fa-spinner fa-spin fa-2x"></i>
+                                                     <i class="fas fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
                                                 </div>
                                                 <small class="text-muted" style="font-size: 0.8rem; text-align: center; padding: 0 5px; word-break: break-all;">
                                                     Uploading...
@@ -230,7 +230,7 @@
                     // Show error state in card
                     const msg = xhr.responseJSON?.message || 'Failed';
                     $(`#${tempId}`).find('.gallery-img').html(`
-                                                <i class="fas fa-exclamation-circle text-danger fa-2x mb-2"></i>
+                                                <i class="fas fa-exclamation-circle text-danger fa-2x mb-2" aria-hidden="true"></i>
                                                 <small class="text-danger" style="font-size: 0.8rem; text-align: center;">${msg}</small>
                                             `);
 
@@ -251,7 +251,7 @@
                         $(this).remove();
 
                         if ($('#gallery-container').children('.gallery-item').length === 0) {
-                            $('#gallery-container').html('<div class="empty-state"><i class="fas fa-images fa-3x mb-3"></i><p>No images found in gallery.</p></div>');
+                            $('#gallery-container').html('<div class="empty-state"><i class="fas fa-images fa-3x mb-3" aria-hidden="true"></i><p>No images found in gallery.</p></div>');
                         }
                     });
                 },

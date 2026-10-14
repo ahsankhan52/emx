@@ -73,7 +73,13 @@ jobs:
           cd "$DEPLOY_PATH"
 
           echo ">> composer install"
-          composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+          # --no-scripts: Hostinger disables proc_open, so composer's
+          # `@php artisan package:discover` hook (which spawns a subprocess) fails.
+          # We skip scripts here and run package discovery directly below.
+          composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts
+
+          echo ">> discover packages (direct; no subprocess needed)"
+          php artisan package:discover --ansi
 
           echo ">> rebuilding caches"
           php artisan config:clear

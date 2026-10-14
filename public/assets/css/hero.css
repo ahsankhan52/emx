@@ -70,8 +70,9 @@
      an opaque backdrop for contrast — never resolving to "no background"
      over the photo. Composited over the hero backdrop this is ~16:1. */
   display: inline-block;
-  background-color: rgba(10, 23, 34, 0.72);
+  background-color: rgba(6, 12, 18, 0.814);
   padding: 14px 20px;
+  font-weight: 600;
   border-radius: var(--radius-md);
 }
 

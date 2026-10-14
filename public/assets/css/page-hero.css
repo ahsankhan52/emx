@@ -9,6 +9,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Opaque dark backdrop behind the banner image — guarantees text contrast
+     even over a photo, and keeps text readable if the image fails to load. */
+  background-color: var(--color-hero-backdrop);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

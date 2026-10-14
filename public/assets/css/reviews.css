@@ -77,6 +77,13 @@
   color: var(--color-accent-text-on-light);
 }
 
+/* The off-screen "Rated N out of 5 stars" label is read by screen readers only.
+   Give it a guaranteed high-contrast colour so its contrast never depends on
+   the decorative star colour (keeps scanners happy; visually it's hidden). */
+.review-stars .visually-hidden {
+  color: var(--color-text-primary);
+}
+
 .review-text {
   font-size: 1.125rem;
   line-height: 1.8;

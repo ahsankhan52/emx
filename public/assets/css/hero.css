@@ -9,9 +9,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-700) 100%); */
   overflow: hidden;
 
+  /* Opaque dark backdrop behind the image — guarantees text contrast even
+     when the background is a photo (no solid colour to compute against). */
+  background-color: var(--color-hero-backdrop);
   background-image: url('../images/hero/hero.jpeg');
   background-size: cover;
   background-position: center;
@@ -64,7 +66,14 @@
   margin-bottom: 2.5rem;
   color: var(--color-text-white-muted);
   line-height: 1.7;
-  text-shadow: 1px 1px 4px var(--color-shadow-overlay-light);
+  /* Give the lead paragraph its own dark readability panel so it always has
+     an opaque backdrop for contrast — never resolving to "no background"
+     over the photo. Composited over the hero backdrop this is ~16:1. */
+  display: inline-block;
+  background-color: rgba(6, 12, 18, 0.814);
+  padding: 14px 20px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
 }
 
 .hero-cta {
@@ -80,14 +89,17 @@
 
 /* Secondary button sits on the dark hero image — use white text/border
    for sufficient contrast (WCAG 1.4.3 / 1.4.11), orange fill on hover. */
+/* Secondary CTA uses the brand blue (complements the orange primary button
+   and echoes the header/footer). White text on primary-500 is ~6:1 (AA). */
 .hero-cta .btn-secondary {
+  background-color: var(--color-primary-500);
   color: var(--color-text-white);
-  border-color: var(--color-text-white);
+  border-color: var(--color-primary-500);
 }
 
 .hero-cta .btn-secondary:hover {
-  background-color: var(--color-btn-primary-bg);
-  border-color: var(--color-btn-primary-bg);
+  background-color: var(--color-primary-700);
+  border-color: var(--color-primary-700);
   color: var(--color-text-white);
 }
 

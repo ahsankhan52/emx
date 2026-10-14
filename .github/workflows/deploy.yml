@@ -1,0 +1,85 @@
+name: Deploy
+
+# Branch → environment mapping:
+#   push to `staging` → deploys to stage.emxautodiagnosisandrepair.com
+#   push to `master`  → deploys to www.emxautodiagnosisandrepair.com (production)
+#
+# Promotion flow: feature/* → PR into `staging` (auto-deploys stage) →
+#                 review on stage → PR `staging` → `master` (deploys prod).
+on:
+  push:
+    branches: [staging, master]
+  workflow_dispatch: {}   # allows a manual re-deploy from the Actions tab
+
+# Never let two deploys to the same branch overlap.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # GitHub Environment. Add a "Required reviewer" to the `production`
+    # environment in repo Settings → Environments to turn merges-to-master
+    # into a manual-approval gate. Until then it deploys automatically.
+    environment: ${{ github.ref == 'refs/heads/master' && 'production' || 'staging' }}
+
+    env:
+      IS_PROD: ${{ github.ref == 'refs/heads/master' }}
+      DEPLOY_PATH: ${{ github.ref == 'refs/heads/master' && '/home/u302575614/domains/emxautodiagnosisandrepair.com/public_html' || '/home/u302575614/domains/emxautodiagnosisandrepair.com/public_html/stage.emxautodiagnosisandrepair.com' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Show deploy target
+        run: |
+          echo "Branch     : ${{ github.ref_name }}"
+          echo "Production : ${{ env.IS_PROD }}"
+          echo "Target path: ${{ env.DEPLOY_PATH }}"
+
+      - name: Upload code (rsync over SSH)
+        run: |
+          rsync -rlptDvz --delete \
+            -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
+            --exclude-from=.deploy/rsync-exclude.txt \
+            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ env.DEPLOY_PATH }}/"
+
+      - name: Post-deploy (composer + artisan)
+        run: |
+          ssh -p "${{ secrets.SSH_PORT }}" -i ~/.ssh/id_ed25519 \
+            -o StrictHostKeyChecking=yes \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            IS_PROD="${{ env.IS_PROD }}" DEPLOY_PATH="${{ env.DEPLOY_PATH }}" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          cd "$DEPLOY_PATH"
+
+          echo ">> composer install"
+          composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+          echo ">> rebuilding caches"
+          php artisan config:clear
+          php artisan cache:clear || true
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          php artisan storage:link 2>/dev/null || true
+
+          if [ "$IS_PROD" = "true" ]; then
+            echo ">> production: running migrations"
+            php artisan migrate --force
+          else
+            echo ">> staging: blocking search engines via robots.txt"
+            printf 'User-agent: *\nDisallow: /\n' > public/robots.txt
+          fi
+
+          echo ">> done"
+          REMOTE

@@ -38,7 +38,21 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+          # One SSH config alias shared by rsync + ssh. accept-new avoids a
+          # separate ssh-keyscan call, which can time out from a GitHub runner
+          # and fail the whole deploy (the host is trusted on first connect).
+          cat > ~/.ssh/config <<'CFG'
+          Host deploy
+            HostName ${{ secrets.SSH_HOST }}
+            Port ${{ secrets.SSH_PORT }}
+            User ${{ secrets.SSH_USER }}
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking accept-new
+            ConnectTimeout 30
+            ServerAliveInterval 15
+            ServerAliveCountMax 4
+          CFG
+          chmod 600 ~/.ssh/config
 
       - name: Show deploy target
         run: |
@@ -48,54 +62,39 @@ jobs:
 
       - name: Upload code (rsync over SSH)
         run: |
-          set +e
-          rsync -rlptDvz --delete --omit-dir-times \
-            -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
-            --exclude-from=.deploy/rsync-exclude.txt \
-            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ env.DEPLOY_PATH }}/"
-          rc=$?
-          set -e
-          echo "rsync exit code: $rc"
-          # 0 = OK. 23/24 = partial (harmless perm/attr or vanished-file warnings
-          # on shared hosting where we don't own every attribute). Anything else is fatal.
+          rc=1
+          for attempt in 1 2 3; do
+            set +e
+            rsync -rlptDvz --delete --omit-dir-times \
+              -e "ssh -F $HOME/.ssh/config" \
+              --exclude-from=.deploy/rsync-exclude.txt \
+              ./ "deploy:${{ env.DEPLOY_PATH }}/"
+            rc=$?
+            set -e
+            # 0 = OK. 23/24 = harmless partial-attr warnings on shared hosting.
+            if [ "$rc" -eq 0 ] || [ "$rc" -eq 23 ] || [ "$rc" -eq 24 ]; then break; fi
+            echo "::warning::rsync attempt $attempt failed (exit $rc); retrying in 20s..."
+            sleep 20
+          done
+          echo "rsync final exit code: $rc"
           if [ "$rc" -ne 0 ] && [ "$rc" -ne 23 ] && [ "$rc" -ne 24 ]; then
-            echo "::error::rsync failed with exit code $rc"
+            echo "::error::rsync failed after 3 attempts (exit $rc)"
             exit "$rc"
           fi
 
       - name: Post-deploy (composer + artisan)
         run: |
-          ssh -p "${{ secrets.SSH_PORT }}" -i ~/.ssh/id_ed25519 \
-            -o StrictHostKeyChecking=yes \
-            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
-            IS_PROD="${{ env.IS_PROD }}" DEPLOY_PATH="${{ env.DEPLOY_PATH }}" 'bash -s' <<'REMOTE'
-          set -euo pipefail
-          cd "$DEPLOY_PATH"
-
-          echo ">> composer install"
-          # --no-scripts: Hostinger disables proc_open, so composer's
-          # `@php artisan package:discover` hook (which spawns a subprocess) fails.
-          # We skip scripts here and run package discovery directly below.
-          composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts
-
-          echo ">> discover packages (direct; no subprocess needed)"
-          php artisan package:discover --ansi
-
-          echo ">> rebuilding caches"
-          php artisan config:clear
-          php artisan cache:clear || true
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-          php artisan storage:link 2>/dev/null || true
-
-          if [ "$IS_PROD" = "true" ]; then
-            echo ">> production: running migrations"
-            php artisan migrate --force
-          else
-            echo ">> staging: blocking search engines via robots.txt"
-            printf 'User-agent: *\nDisallow: /\n' > public/robots.txt
+          ok=0
+          for attempt in 1 2 3; do
+            if ssh -F "$HOME/.ssh/config" deploy \
+                 IS_PROD="${{ env.IS_PROD }}" DEPLOY_PATH="${{ env.DEPLOY_PATH }}" \
+                 'bash -s' < .deploy/remote-deploy.sh; then
+              ok=1; break
+            fi
+            echo "::warning::post-deploy attempt $attempt failed; retrying in 20s..."
+            sleep 20
+          done
+          if [ "$ok" -ne 1 ]; then
+            echo "::error::post-deploy failed after 3 attempts"
+            exit 1
           fi
-
-          echo ">> done"
-          REMOTE

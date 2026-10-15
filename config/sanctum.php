@@ -1,7 +1,5 @@
 <?php
 
-use Laravel\Sanctum\Sanctum;
-
 return [
 
     /*
@@ -15,11 +13,21 @@ return [
     |
     */
 
-    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s',
-        'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
-        Sanctum::currentApplicationUrlWithPort()
-    ))),
+    'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', implode(',', [
+        // Local development
+        'localhost',
+        'localhost:3000',
+        '127.0.0.1',
+        '127.0.0.1:8000',
+        '::1',
+        // Live hosts. The admin UI is same-origin with the API, so every host
+        // the admin can be served from must be "stateful" for session-based
+        // Sanctum auth to work. Without non-www/staging here, an upload from
+        // those hosts is treated as a stateless (token) call -> "Unauthenticated".
+        'emxautodiagnosisandrepair.com',
+        'www.emxautodiagnosisandrepair.com',
+        'stage.emxautodiagnosisandrepair.com',
+    ]))),
 
     /*
     |--------------------------------------------------------------------------

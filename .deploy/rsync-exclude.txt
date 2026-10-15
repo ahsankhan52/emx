@@ -1,0 +1,41 @@
+# Paths excluded from deployment rsync.
+# Anchored with a leading "/" = relative to the repo root (the rsync source).
+# These are ALSO protected from --delete on the server, so server-side runtime
+# data and per-environment config are never wiped by a deploy.
+
+# --- Version control / CI / tooling (never belongs on the server) ---
+/.git/
+/.github/
+/.deploy/
+/.gitignore
+/.gitattributes
+/.editorconfig
+
+# --- Dependencies: rebuilt on the server by `composer install` ---
+/vendor/
+/node_modules/
+
+# --- Per-environment config: lives ONLY on the server, never overwrite ---
+/.env
+/.env.*
+/.htaccess
+
+# --- Runtime + user data: owned by the live site, protect from --delete ---
+/storage/
+/public/uploads/
+/public/build/
+/public/hot
+/public/storage
+
+# --- The nested staging site sits INSIDE prod's web root.
+#     This line stops a production deploy from deleting the whole stage site. ---
+/stage.emxautodiagnosisandrepair.com/
+
+# --- Server-only leftovers ---
+/default.php
+/emx_db_live.txt
+
+# --- Dev-only files, no reason to ship ---
+/tests/
+/phpunit.xml
+/README.md
